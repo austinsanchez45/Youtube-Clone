@@ -12,7 +12,7 @@ class App extends Component {
       video: {
         items: [{
           snippet: {
-            title: '',
+            title: 'AVATAR: FRONTIERS OF PANDORA Trailer (2022)',
           }
         }]
       },
@@ -31,12 +31,6 @@ class App extends Component {
         subscribers: 0
       }
     }
-  }
-
-  componentDidMount(id){
-    this.getVideo(id);
-    this.getRelatedVideos(id)
-    this.getBackendData(id)
   }
 
   getBackendData = async (id) => {

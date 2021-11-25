@@ -6,9 +6,9 @@ const VideoPlayer = (props) => {
     let videoId = props.searchVideos.items[0].id.videoId;
     let url = "https://www.youtube.com/embed/" + videoId;
     let backendData = props.backendData
-    // props.getVideo(videoId);
-    // props.getRelatedVideos(videoId);
-    // props.getBackendData(videoId);
+    props.getVideo(videoId);
+    props.getRelatedVideos(videoId);
+    props.getBackendData(videoId);
     return (
         <div>
             <div className="container">

@@ -9,24 +9,61 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      comments: [],
-      videos: [],
-      relatedVideos: []
+      video: {
+        items: [{
+          snippet: {
+            title: '',
+          }
+        }]
+      },
+      relatedVideos: [],
+      searchVideos: {
+        items: [{
+          id: {
+            videoId: 'BYQ8S5xtY68'
+          }
+        }]
+      },
+      backendData: {
+        videoId: '',
+        likes: 0,
+        shares: 0,
+        subscribers: 0
+      }
     }
   }
 
-  componentDidMount(){
-    this.getComments();
+  componentDidMount(id){
+    this.getVideo(id);
+    this.getRelatedVideos(id)
+    this.getBackendData(id)
   }
 
-  getComments = async (id) => {
+  getBackendData = async (id) => {
     try {
-      let response = await axios.get('http://127.0.01:8000/comments/' + id + '/');
+      let response = await axios.get('http://127.0.01:8000/backendData/' + id + '/');
       this.setState({
-        comments: response.data
+        backendData: response.data
       });
     }catch(e) {
       console.log(e);
+    }
+  }
+
+  postBackendData = async (id) => {
+    let backendData = {
+      videoId: id,
+      likes: id.likes,
+      shares: id.shares,
+      subscribers: id.subscribers,
+    }
+    try {
+      await axios.post('http://127.0.01:8000/backendData/', backendData);
+      this.setState({
+        backendData: backendData
+      }, () => console.log(this.state.video))
+    }catch(e) {
+      console.log(e)
     }
   }
 
@@ -34,7 +71,7 @@ class App extends Component {
     try {
       let response = await axios.get('https://youtube.googleapis.com/youtube/v3/videos?part=snippet&id=' + id + '&key=AIzaSyApXq1CgVYea3-urVi3V-iIFvUEHMHo-k8');
       this.setState({
-        videos: response.data
+        video: response.data
       });
     }catch(e) {
       console.log(e);
@@ -45,7 +82,7 @@ class App extends Component {
     try{
       let response = await axios.get('https://www.googleapis.com/youtube/v3/search?q='+ query + '&key=AIzaSyApXq1CgVYea3-urVi3V-iIFvUEHMHo-k8');
       this.setState({  
-        videos: response.data
+        searchVideos: response.data
       });
     }catch(e) {
       console.log(e);
@@ -75,8 +112,15 @@ class App extends Component {
           <div className="col-1"/>
         </div>
         <br/>
-        <VideoPlayer getVideo={this.getVideo}/>
-        <RelatedVideosPanel getRelatedVideos={this.getRelatedVideos}/>
+        <div className="row">
+          <div className="col-1"/>
+          <div className="col-7">
+            <VideoPlayer {...this.state} getRelatedVideos={this.getRelatedVideos} getVideo={this.getVideo} getBackendData={this.getBackendData}/>
+          </div>
+          <div className="col-4">
+            <RelatedVideosPanel getRelatedVideos={this.getRelatedVideos}/>
+          </div>
+        </div>
       </div>
     )
   }

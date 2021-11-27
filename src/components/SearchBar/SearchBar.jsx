@@ -4,13 +4,14 @@ import './SearchBar.css';
 const SearchBar = (props) => {
     const [query, setQuery] = useState()
 
-    const handleChange = (event) =>{
-        setQuery(event.target.value)
+    const handleChange = (e) =>{
+        setQuery(e.target.value)
     }
 
     const handleSubmit = (e) =>{
-        e.preventDefault()
-        props.searchVideo(query)
+        e.preventDefault();
+        props.searchVideo(query);
+        setQuery('')
     }
 
     return (

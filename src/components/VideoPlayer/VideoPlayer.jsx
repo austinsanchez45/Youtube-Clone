@@ -3,12 +3,7 @@ import './VideoPlayer.css';
 
 
 const VideoPlayer = (props) => {
-    let videoId = props.searchVideos.items[0].id.videoId;
-    let url = "https://www.youtube.com/embed/" + videoId;
-    let backendData = props.backendData
-    props.getVideo(videoId);
-    props.getRelatedVideos(videoId);
-    props.getBackendData(videoId);
+    let url = "https://www.youtube.com/embed/" + props.video.videoId;
     return (
         <div>
             <div className="container">
@@ -17,16 +12,16 @@ const VideoPlayer = (props) => {
             <br/>
             <ul className="nav bg-primary">
                 <li className="nav-item">
-                    <span className="nav-link text-white h5">{props.video.items[0].snippet.title}</span>
+                    <span className="nav-link text-white h5">{props.video.title}</span>
                 </li>
                 <li className="nav-item">
-                    <button className="btn btn-light">Like</button><span className="p-2 text-white">{backendData.likes}</span>
+                    <div className="p-2"><button className="btn btn-light btn-sm btn-outline-secondary">Like</button><span className="p-2 text-white">{props.backendData.likes}</span></div>
                 </li>
                 <li className="nav-item">
-                    <button className="btn btn-light">Share</button><span className="p-2 text-white">{backendData.shares}</span>
+                    <div className="p-2"><button className="btn btn-light btn-sm btn-outline-secondary">Share</button><span className="p-2 text-white">{props.backendData.shares}</span></div>
                 </li>
                 <li className="nav-item">
-                    <button className="btn btn-light">Subscribe</button><span className="p-2 text-white">{backendData.subscribers}</span>
+                    <div className="p-2"><button className="btn btn-light btn-sm btn-outline-secondary">Subscribe</button><span className="p-2 text-white">{props.backendData.subscribers}</span></div>
                 </li>
             </ul> 
         </div>

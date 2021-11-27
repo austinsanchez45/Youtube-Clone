@@ -1,7 +1,7 @@
 import React from 'react';
 import './VideoPlayer.css';
 
-
+//add video description under nav
 const VideoPlayer = (props) => {
     let url = "https://www.youtube.com/embed/" + props.video.videoId;
     return (

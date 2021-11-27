@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import Parser from 'html-react-parser';
 import './RelatedVideosPanel.css';
 
-
+//add related and search videos and their thumbnails to the panel
 const tabContent = (toggle) => {
     let videos = "";
     if (toggle === 1) {

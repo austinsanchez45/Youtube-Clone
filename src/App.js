@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import './App.css';
-import VideoPlayer from './components/VideoPlayer/VideoPlayer'
-import SearchBar from './components/SearchBar/SearchBar'
+import VideoPlayer from './components/VideoPlayer/VideoPlayer';
+import SearchBar from './components/SearchBar/SearchBar';
 import VideosPanel from './components/VideosPanel/VideosPanel';
-import CommentSection from './components/CommentSection/CommentSection'
+import CommentSection from './components/CommentSection/CommentSection';
 
 class App extends Component {
   constructor(props) {
@@ -20,16 +20,21 @@ class App extends Component {
       backendData: {
         videoId: '',
         likes: 0,
-        shares: 0,
-        subscribers: 0,
-        comments: []
+        dislikes: 0,
+        comments: [{
+          commentId: 0,
+          parentId: 0,
+          body: '',
+          likes: 0,
+          dislikes: 0,
+        }]
       }
     }
   }
 
   getBackendData = async (id) => {
     try {
-      let response = await axios.get('http://127.0.01:8000/backendData/' + id + '/');
+      let response = await axios.get('http://127.0.01:8000/youtube_app/' + id);
       this.setState({
         backendData: response.data
       });
@@ -42,12 +47,11 @@ class App extends Component {
     let backendData = {
       videoId: data.id,
       likes: data.likes,
-      shares: data.shares,
-      subscribers: data.subscribers,
+      dislikes: data.dislikes,
       comments: data.comments,
     }
     try {
-      await axios.post('http://127.0.01:8000/backendData/', backendData);
+      await axios.post('http://127.0.01:8000/youtube_app/', backendData);
       this.setState({
         backendData: backendData
       }, () => console.log(this.state.video))
@@ -101,9 +105,16 @@ class App extends Component {
         <div className="row">
           <div className="col-1"/>
           <div className="col-7">
-            <VideoPlayer {...this.state}/>
-            <br/>
-            <CommentSection {...this.state}/>
+            <div className="container">
+              <div className="row">
+                <VideoPlayer {...this.state} getBackendData={this.getBackendData} postBackendData={this.postBackendData}/>
+                <br/>
+              </div>
+              <br/>
+              <div className="row">
+                <CommentSection {...this.state} getBackendData={this.getBackendData} postBackendData={this.postBackendData}/>
+              </div>
+            </div>
           </div>
           <div className="col-3">
             <VideosPanel {...this.state}/>

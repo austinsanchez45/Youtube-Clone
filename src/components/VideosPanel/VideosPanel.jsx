@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import Card from './CardUI.jsx'
+import VideoCard from './VideoCard'
 import './VideosPanel.css';
 
 const tabContent = (props, toggle) => {
@@ -11,16 +11,16 @@ const tabContent = (props, toggle) => {
             videos = 
                 <>
                     <div> 
-                        <Card title={props.searchVideos[1].snippet.title} thumbnail={props.searchVideos[1].snippet.thumbnails.high.url}/>
+                        <VideoCard title={props.searchVideos[1].snippet.title} thumbnail={props.searchVideos[1].snippet.thumbnails.high.url}/>
                     </div>
                     <div>
-                        <Card title={props.searchVideos[2].snippet.title} thumbnail={props.searchVideos[2].snippet.thumbnails.high.url}/>
+                        <VideoCard title={props.searchVideos[2].snippet.title} thumbnail={props.searchVideos[2].snippet.thumbnails.high.url}/>
                     </div>
                     <div>
-                        <Card title={props.searchVideos[3].snippet.title} thumbnail={props.searchVideos[3].snippet.thumbnails.high.url}/>
+                        <VideoCard title={props.searchVideos[3].snippet.title} thumbnail={props.searchVideos[3].snippet.thumbnails.high.url}/>
                     </div>
                     <div>
-                        <Card title={props.searchVideos[4].snippet.title} thumbnail={props.searchVideos[4].snippet.thumbnails.high.url}/>
+                        <VideoCard title={props.searchVideos[4].snippet.title} thumbnail={props.searchVideos[4].snippet.thumbnails.high.url}/>
                     </div>
                 </>
         }     
@@ -31,16 +31,16 @@ const tabContent = (props, toggle) => {
             videos = 
                 <>
                     <div> 
-                        <Card title={props.relatedVideos[1].snippet.title} thumbnail={props.relatedVideos[1].snippet.thumbnails.high.url}/>
+                        <VideoCard title={props.relatedVideos[1].snippet.title} thumbnail={props.relatedVideos[1].snippet.thumbnails.high.url}/>
                     </div>
                     <div>
-                        <Card title={props.relatedVideos[2].snippet.title} thumbnail={props.relatedVideos[2].snippet.thumbnails.high.url}/>
+                        <VideoCard title={props.relatedVideos[2].snippet.title} thumbnail={props.relatedVideos[2].snippet.thumbnails.high.url}/>
                     </div>
                     <div>
-                        <Card title={props.relatedVideos[3].snippet.title} thumbnail={props.relatedVideos[3].snippet.thumbnails.high.url}/>
+                        <VideoCard title={props.relatedVideos[3].snippet.title} thumbnail={props.relatedVideos[3].snippet.thumbnails.high.url}/>
                     </div>
                     <div>
-                        <Card title={props.relatedVideos[4].snippet.title} thumbnail={props.relatedVideos[4].snippet.thumbnails.high.url}/>
+                        <VideoCard title={props.relatedVideos[4].snippet.title} thumbnail={props.relatedVideos[4].snippet.thumbnails.high.url}/>
                     </div>
                 </>
         } 

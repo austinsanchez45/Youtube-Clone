@@ -9,7 +9,7 @@ const VideoPlayer = (props) => {
     let url = "https://www.youtube.com/embed/" + props.video.videoId;
     const [open, setOpen] = useState(false);
     return (
-        <div className="container">
+        <div className="container-fluid">
             <div className="row">
                 <div className="container">
                     <iframe className="video"allowFullScreen src={url} frameBorder="0"></iframe>
@@ -25,10 +25,7 @@ const VideoPlayer = (props) => {
                         <div className="p-2"><button className="btn btn-light btn-sm btn-outline-secondary">Like</button><span className="p-2 text-white">{props.backendData.likes}</span></div>
                     </li>
                     <li className="nav-item">
-                        <div className="p-2"><button className="btn btn-light btn-sm btn-outline-secondary">Share</button><span className="p-2 text-white">{props.backendData.shares}</span></div>
-                    </li>
-                    <li className="nav-item">
-                        <div className="p-2"><button className="btn btn-light btn-sm btn-outline-secondary">Subscribe</button><span className="p-2 text-white">{props.backendData.subscribers}</span></div>
+                        <div className="p-2"><button className="btn btn-light btn-sm btn-outline-secondary">Dislike</button><span className="p-2 text-white">{props.backendData.dislikes}</span></div>
                     </li>
                     <li className="nav-item">
                         <div className="p-2"><Button variant="light outline-secondary"onClick={() => setOpen(!open)} aria-controls="description" aria-expanded={open}>Description</Button></div>

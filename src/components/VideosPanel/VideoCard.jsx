@@ -2,7 +2,7 @@ import React from 'react';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 
-const card = props => {
+const VideoCard = props => {
     return (
         <Card>
             <Card.Img variant="top" src={props.thumbnail} />
@@ -14,4 +14,4 @@ const card = props => {
     );
 }
 
-export default card;
+export default VideoCard;

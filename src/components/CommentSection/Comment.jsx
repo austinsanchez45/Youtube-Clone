@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
+
 const Comment = (props) => {
     const [likes, setLikes] = useState(props.commentLikes)
     const [dislikes, setDislikes] = useState(props.commentDislikes)
@@ -9,6 +10,7 @@ const Comment = (props) => {
     const [reply,SetReply] = useState('')
     const [replyLikes,SetReplyLikes] = useState(0)
     const [replyDislikes,SetReplyDislikes] = useState(0)
+
     const handleClick = async(parentId)=>{
         reply={
             commentBody:reply,
@@ -17,6 +19,7 @@ const Comment = (props) => {
             parentId:parentId,
         }
     }
+
     return (
         <div>      
             <div key={props.commentId}>
@@ -40,4 +43,5 @@ const Comment = (props) => {
         </div>
     )
 }
+
 export default Comment;
